@@ -1,14 +1,17 @@
 {
   "expo": {
-    "name": "Tab Navigation Template",
-    "slug": "expo-template-tabs",
+    "name": "Demo Boarding Room Accessing",
+    "slug": "boarding-room-accessing-app",
     "privacy": "public",
     "sdkVersion": "34.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "ios": {
+      "bundleIdentifier": "com.extrin13.boardingroomaccessingapp",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.extrin13.boardingroomaccessingapp"
+    },
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -20,13 +23,8 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    }
+    "assetBundlePatterns": ["**/*"]
   },
-  "slug": "boarding-room-booking-app",
+  "slug": "boarding-room-accessing-app",
   "name": "Demo Boarding Room Accessing"
 }
