@@ -1,4 +1,4 @@
-# boarding-room-booking-app
+# boarding-room-accessing-app
 
 This is simple app for test/demo purpose
 
