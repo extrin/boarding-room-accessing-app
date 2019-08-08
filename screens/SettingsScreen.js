@@ -1,7 +1,14 @@
 import React from "react";
-import { KeyboardAvoidingView, TextInput, Text, Button } from "react-native";
+import {
+  KeyboardAvoidingView,
+  TextInput,
+  Text,
+  Button,
+  StyleSheet
+} from "react-native";
 
 export default class SettingsScreen extends React.Component {
+  state = { text: "" };
   componentDidMount() {}
 
   render() {
