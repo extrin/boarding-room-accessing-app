@@ -1,4 +1,3 @@
-import * as WebBrowser from "expo-web-browser";
 import React from "react";
 import {
   Image,
@@ -35,10 +34,11 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={styles.externalLinkContainer}>
-            <TouchableOpacity style={styles.externalLink}>
-              <Text style={styles.externalLinkText} onPress={this._handleTouch}>
-                УПРАВЛЯТЬ
-              </Text>
+            <TouchableOpacity
+              style={styles.externalLink}
+              onPress={this._openManagingScreen}
+            >
+              <Text style={styles.externalLinkText}>УПРАВЛЯТЬ</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -46,9 +46,7 @@ export default class HomeScreen extends React.Component {
     );
   }
 
-  _handleTouch = () => {
-    WebBrowser.openBrowserAsync("http://10.2.0.3:1880/ui/#!/0");
-  };
+  _openManagingScreen = () => this.props.navigation.navigate("Manage");
 
   _openAdvancedSettings = () => this.props.navigation.navigate("Settings");
 }
