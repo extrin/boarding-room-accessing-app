@@ -7,10 +7,9 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  Button
 } from "react-native";
-
-import { MonoText } from "../components/StyledText";
 
 export default class HomeScreen extends React.Component {
   render() {
@@ -20,6 +19,12 @@ export default class HomeScreen extends React.Component {
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
         >
+          <View>
+            <Button
+              title="Advanced Settings"
+              onPress={this._openAdvancedSettings}
+            />
+          </View>
           <View style={styles.welcomeContainer}>
             <Text style={styles.getStartedText}>Ваша переговорная комната</Text>
             <Image
@@ -46,6 +51,8 @@ export default class HomeScreen extends React.Component {
   _handlePressEnter = () => {
     WebBrowser.openBrowserAsync("http://10.2.0.3:1880/ui/#!/0");
   };
+
+  _openAdvancedSettings = () => this.props.navigation.navigate("Settings");
 }
 
 HomeScreen.navigationOptions = {

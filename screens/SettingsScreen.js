@@ -42,9 +42,7 @@ export default class SettingsScreen extends React.Component {
     return 0;
   };
 
-  _navigateToHomeScreen = () => {
-    return 0;
-  };
+  _navigateToHomeScreen = () => this.props.navigation.navigate("Home");
 }
 
 SettingsScreen.navigationOptions = {
