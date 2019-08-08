@@ -7,6 +7,7 @@ import {
   StyleSheet,
   View
 } from "react-native";
+import { CustomStatusBar } from "../components/CustomStatusBar";
 
 export default class SettingsScreen extends React.Component {
   state = { text: "" };
@@ -15,6 +16,7 @@ export default class SettingsScreen extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+        <CustomStatusBar />
         <View style={styles.inputView}>
           <Text style={styles.inputLabel}>Адрес сервера с интерфейсом</Text>
           <TextInput

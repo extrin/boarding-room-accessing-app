@@ -11,11 +11,13 @@ import {
 } from "react-native";
 import Colors from "../constants/Colors";
 import CustomIcon from "../components/CustomIcon";
+import CustomStatusBar from "../components/CustomStatusBar";
 
 export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <CustomStatusBar />
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}

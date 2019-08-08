@@ -1,12 +1,16 @@
 import React from "react";
 import { WebView } from "react-native-webview";
+import { CustomStatusBar } from "../components/CustomStatusBar";
 
 export default function ManageScreen() {
   return (
-    <WebView
-      source={{ uri: "http://10.2.0.3:1880/ui/#!/0" }}
-      style={{ marginTop: 20 }}
-    />
+    <View>
+      <CustomStatusBar />
+      <WebView
+        source={{ uri: "http://10.2.0.3:1880/ui/#!/0" }}
+        style={{ marginTop: 20 }}
+      />
+    </View>
   );
 }
 
