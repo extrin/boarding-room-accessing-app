@@ -9,7 +9,7 @@ export default function CustomIcon(props) {
       name={props.name}
       size={26}
       style={{ marginBottom: -3 }}
-      color={props.focused ? Colors.iconSelected : Colors.iconDefault}
+      color={props.focused ? Colors.tintColor : Colors.iconDefault}
     />
   );
 }

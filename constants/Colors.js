@@ -1,13 +1,10 @@
-const tintColor = "#2f95dc";
-
 export default {
-  tintColor,
-  iconDefault: "#ccc",
-  iconSelected: tintColor,
-  errorBackground: "red",
-  errorText: "#fff",
-  warningBackground: "#EAEB5E",
-  warningText: "#666804",
-  noticeBackground: tintColor,
-  noticeText: "#fff"
+  primary: "#607D8B",
+  primaryLight: "#CFD8DC",
+  primaryDark: "#455A64",
+  divider: "#BDBDBD",
+  iconDefault: "#FFFFFF",
+  primaryText: "#212121",
+  secondaryText: "#757575",
+  tintColor: "#CDDC39"
 };

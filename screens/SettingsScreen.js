@@ -4,7 +4,8 @@ import {
   TextInput,
   Text,
   Button,
-  StyleSheet
+  StyleSheet,
+  View
 } from "react-native";
 
 export default class SettingsScreen extends React.Component {
@@ -14,26 +15,30 @@ export default class SettingsScreen extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-        <Text style={styles.inputLabel}>Адрес сервера с интерфейсом</Text>
-        <TextInput
-          style={styles.inputField}
-          keyboardType="number-pad"
-          onChangeText={text => this.setState({ text })}
-          value={this.state.text}
-          placeholder="UI server address"
-        />
-        <Button
-          onPress={this._saveServerAddress}
-          title="ПРИМЕНИТЬ"
-          color="#841584"
-          accessibilityLabel="Записать введенный адрес сервера"
-        />
-        <Button
-          onPress={this._navigateToHomeScreen}
-          title="ОТМЕНИТЬ"
-          color="#841584"
-          accessibilityLabel="Закрыть настройки, не изменять адрес сервера, вернуться на основной экран."
-        />
+        <View style={styles.inputView}>
+          <Text style={styles.inputLabel}>Адрес сервера с интерфейсом</Text>
+          <TextInput
+            style={styles.inputField}
+            keyboardType="number-pad"
+            onChangeText={text => this.setState({ text })}
+            value={this.state.text}
+            placeholder="UI server address"
+          />
+        </View>
+        <View style={styles.buttonsContainer}>
+          <Button
+            style={styles.acceptButton}
+            onPress={this._saveServerAddress}
+            title="ПРИМЕНИТЬ"
+            accessibilityLabel="Записать введенный адрес сервера"
+          />
+          <Button
+            style={styles.cancelButton}
+            onPress={this._navigateToHomeScreen}
+            title="ОТМЕНИТЬ"
+            accessibilityLabel="Закрыть настройки, не изменять адрес сервера, вернуться на основной экран."
+          />
+        </View>
       </KeyboardAvoidingView>
     );
   }
@@ -51,13 +56,20 @@ SettingsScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#ffffff"
+    flex: 1
   },
+  inputContainer: { margin: 20 },
   inputField: {
     fontSize: 25
   },
   inputLabel: {
     fontSize: 20
-  }
+  },
+  buttonsContainer: {
+    margin: 20,
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  acceptButton: { backgroundColor: "green" },
+  cancelButton: { backgroundColor: "purple" }
 });

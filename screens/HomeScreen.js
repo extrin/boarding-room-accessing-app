@@ -10,6 +10,8 @@ import {
   View,
   Button
 } from "react-native";
+import Colors from "../constants/Colors";
+import CustomIcon from "../components/CustomIcon";
 
 export default class HomeScreen extends React.Component {
   render() {
@@ -19,27 +21,23 @@ export default class HomeScreen extends React.Component {
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
         >
-          <View>
-            <Button
-              title="Advanced Settings"
-              onPress={this._openAdvancedSettings}
-            />
+          <View style={styles.headerContainer}>
+            <TouchableOpacity onPress={this._openAdvancedSettings}>
+              <CustomIcon name="md-settings" />
+            </TouchableOpacity>
           </View>
           <View style={styles.welcomeContainer}>
-            <Text style={styles.getStartedText}>Ваша переговорная комната</Text>
+            <Text style={styles.welcomeText}>Ваша переговорная комната</Text>
             <Image
               source={require("../assets/images/vip.png")}
               style={styles.welcomeImage}
             />
           </View>
 
-          <View style={styles.helpContainer}>
-            <TouchableOpacity style={styles.helpLink}>
-              <Text
-                style={styles.helpLinkText}
-                onPress={this._handlePressEnter}
-              >
-                ВОЙТИ
+          <View style={styles.externalLinkContainer}>
+            <TouchableOpacity style={styles.externalLink}>
+              <Text style={styles.externalLinkText} onPress={this._handleTouch}>
+                УПРАВЛЯТЬ
               </Text>
             </TouchableOpacity>
           </View>
@@ -48,7 +46,7 @@ export default class HomeScreen extends React.Component {
     );
   }
 
-  _handlePressEnter = () => {
+  _handleTouch = () => {
     WebBrowser.openBrowserAsync("http://10.2.0.3:1880/ui/#!/0");
   };
 
@@ -62,7 +60,12 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: Colors.primaryDark
+  },
+  headerContainer: {
+    alignSelf: "flex-end",
+    marginTop: 10,
+    marginRight: 10
   },
   contentContainer: {
     paddingTop: 30
@@ -79,22 +82,28 @@ const styles = StyleSheet.create({
     width: 350,
     padding: 10
   },
-  getStartedText: {
+  welcomeText: {
     fontSize: 25,
-    color: "rgba(96,100,109, 1)",
+    color: Colors.primaryText,
     lineHeight: 24,
     textAlign: "center",
     paddingTop: 15
   },
-  helpContainer: {
-    marginTop: 15,
+  externalLinkContainer: {
     alignItems: "center"
   },
-  helpLink: {
-    paddingVertical: 15
+  externalLink: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingVertical: 15,
+    backgroundColor: Colors.primaryLight,
+    borderStyle: "dotted",
+    borderWidth: 2,
+    borderColor: Colors.divider,
+    borderRadius: 15
   },
-  helpLinkText: {
+  externalLinkText: {
     fontSize: 25,
-    color: "#2e78b7"
+    color: Colors.primaryDark
   }
 });
