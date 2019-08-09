@@ -1,15 +1,24 @@
 import React from "react";
 import { WebView } from "react-native-webview";
 import { ActivityIndicator, Text } from "react-native";
+import * as SecureStore from "expo-secure-store";
 import Colors from "../constants/Colors";
 
 export default class ManageScreen extends React.Component {
+  state = { serverAddress: "10.2.0.3" };
+
+  componentDidMount() {
+    SecureStore.getItemAsync("serverAddress").then(res => {
+      res ? this.setState({ serverAddress: res }) : "10.2.0.3";
+    });
+  }
+
   render() {
     return (
       <WebView
         textZoom={100}
         startInLoadingState={true}
-        source={{ uri: "http://10.2.0.3:1880/ui/#!/0" }}
+        source={{ uri: `http://${this.state.serverAddress}:1880/ui/#!/0` }}
         renderError={errorName => <Error errorName={errorName} />}
         renderLoading={() => (
           <ActivityIndicator size="large" color={Colors.tintColor} />
