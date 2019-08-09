@@ -7,10 +7,18 @@ import {
   StyleSheet,
   View
 } from "react-native";
+import * as SecureStore from "expo-secure-store";
 
 export default class SettingsScreen extends React.Component {
-  state = { text: "" };
-  componentDidMount() {}
+  state = { serverAddress: "" };
+
+  componentDidMount() {
+    SecureStore.getItemAsync("serverAddress").then(result =>
+      result
+        ? this.setState({ serverAddress: result })
+        : this.setState({ serverAddress: "10.2.0.3" })
+    );
+  }
 
   render() {
     return (
@@ -20,21 +28,25 @@ export default class SettingsScreen extends React.Component {
           <TextInput
             style={styles.inputField}
             keyboardType="number-pad"
-            onChangeText={text => this.setState({ text })}
-            value={this.state.text}
+            onChangeText={text => this.setState({ serverAddress: text })}
+            value={this.state.serverAddress}
             placeholder="UI server address"
           />
         </View>
         <View style={styles.buttonsContainer}>
           <Button
             style={styles.acceptButton}
-            onPress={this._saveServerAddress}
+            onPress={() => {
+              this._saveServerAddress(this.state.serverAddress).then(
+                this._navigateToHomeScreen(this.props.navigation)
+              );
+            }}
             title="ПРИМЕНИТЬ"
             accessibilityLabel="Записать введенный адрес сервера"
           />
           <Button
             style={styles.cancelButton}
-            onPress={this._navigateToHomeScreen}
+            onPress={() => this._navigateToHomeScreen(this.props.navigation)}
             title="ОТМЕНИТЬ"
             accessibilityLabel="Закрыть настройки, не изменять адрес сервера, вернуться на основной экран."
           />
@@ -43,11 +55,12 @@ export default class SettingsScreen extends React.Component {
     );
   }
 
-  _saveServerAddress = () => {
-    return 0;
+  _saveServerAddress = async serverAddress => {
+    await SecureStore.setItemAsync("serverAddress", serverAddress);
+    alert("Сохранено!");
   };
 
-  _navigateToHomeScreen = () => this.props.navigation.navigate("Home");
+  _navigateToHomeScreen = navigation => navigation.navigate("Home");
 }
 
 SettingsScreen.navigationOptions = {
