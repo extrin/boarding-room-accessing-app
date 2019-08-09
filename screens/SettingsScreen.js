@@ -3,11 +3,12 @@ import {
   KeyboardAvoidingView,
   TextInput,
   Text,
-  Button,
+  TouchableOpacity,
   StyleSheet,
   View
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
+import Colors from "../constants/Colors";
 
 export default class SettingsScreen extends React.Component {
   state = { serverAddress: "" };
@@ -23,7 +24,7 @@ export default class SettingsScreen extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-        <View style={styles.inputView}>
+        <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Адрес сервера с интерфейсом</Text>
           <TextInput
             style={styles.inputField}
@@ -34,22 +35,22 @@ export default class SettingsScreen extends React.Component {
           />
         </View>
         <View style={styles.buttonsContainer}>
-          <Button
+          <TouchableOpacity
             style={styles.acceptButton}
             onPress={() => {
               this._saveServerAddress(this.state.serverAddress).then(
                 this._navigateToHomeScreen(this.props.navigation)
               );
             }}
-            title="ПРИМЕНИТЬ"
-            accessibilityLabel="Записать введенный адрес сервера"
-          />
-          <Button
+          >
+            <Text>ПРИМЕНИТЬ</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={styles.cancelButton}
             onPress={() => this._navigateToHomeScreen(this.props.navigation)}
-            title="ОТМЕНИТЬ"
-            accessibilityLabel="Закрыть настройки, не изменять адрес сервера, вернуться на основной экран."
-          />
+          >
+            <Text>ОТМЕНИТЬ</Text>
+          </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     );
@@ -69,20 +70,40 @@ SettingsScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: Colors.primaryLight
   },
-  inputContainer: { margin: 20 },
+  inputContainer: {
+    margin: 5,
+    padding: 10
+  },
   inputField: {
-    fontSize: 25
+    marginTop: 10,
+    padding: 5,
+    fontSize: 25,
+    color: Colors.primaryText,
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: Colors.divider
   },
   inputLabel: {
-    fontSize: 20
+    fontSize: 20,
+    color: Colors.primaryText
   },
   buttonsContainer: {
-    margin: 20,
     flexDirection: "row",
     justifyContent: "space-around"
   },
-  acceptButton: { backgroundColor: "green" },
-  cancelButton: { backgroundColor: "purple" }
+  acceptButton: {
+    backgroundColor: Colors.tintColor,
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 15
+  },
+  cancelButton: {
+    backgroundColor: Colors.divider,
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 15
+  }
 });

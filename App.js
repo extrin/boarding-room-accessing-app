@@ -2,7 +2,7 @@ import { AppLoading } from "expo";
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
 import React, { useState } from "react";
-import { Platform, StyleSheet, View, StatusBar } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "./constants/Colors";
 import AppNavigator from "./navigation/AppNavigator";
@@ -21,7 +21,6 @@ export default function App(props) {
   } else {
     return (
       <View style={styles.container}>
-        <StatusBar translucent={true} />
         <AppNavigator />
       </View>
     );

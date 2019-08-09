@@ -11,7 +11,10 @@
     "android": {
       "package": "com.extrin13.boardingroomaccessingapp"
     },
-    "platforms": ["ios", "android", "web"],
+    "androidStatusBar": {
+      "backgroundColor": "#CFD8DC"
+    },
+    "platforms": ["android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

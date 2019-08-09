@@ -58,11 +58,10 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.primaryDark
+    backgroundColor: Colors.primaryLight
   },
   headerContainer: {
     alignSelf: "flex-end",
-    marginTop: 10,
     marginRight: 10
   },
   contentContainer: {
@@ -94,14 +93,11 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     paddingVertical: 15,
-    backgroundColor: Colors.primaryLight,
-    borderStyle: "dotted",
-    borderWidth: 2,
-    borderColor: Colors.divider,
+    backgroundColor: Colors.primaryDark,
     borderRadius: 15
   },
   externalLinkText: {
     fontSize: 25,
-    color: Colors.primaryDark
+    color: Colors.primaryText
   }
 });
