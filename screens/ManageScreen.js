@@ -21,7 +21,11 @@ export default class ManageScreen extends React.Component {
         source={{ uri: `http://${this.state.serverAddress}:1880/ui/#!/0` }}
         renderError={errorName => <Error errorName={errorName} />}
         renderLoading={() => (
-          <ActivityIndicator size="large" color={Colors.tintColor} />
+          <ActivityIndicator
+            size="large"
+            color={Colors.tintColor}
+            style={{ alignSelf: "center" }}
+          />
         )}
       />
     );

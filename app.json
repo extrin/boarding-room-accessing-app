@@ -12,7 +12,8 @@
       "package": "com.extrin13.boardingroomaccessingapp"
     },
     "androidStatusBar": {
-      "backgroundColor": "#CFD8DC"
+      "backgroundColor": "#CFD8DC",
+      "barStyle": "dark-content"
     },
     "platforms": ["android", "web"],
     "version": "1.0.0",

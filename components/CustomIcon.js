@@ -7,7 +7,6 @@ export default function CustomIcon(props) {
     <Ionicons
       name={props.name}
       size={26}
-      style={{ marginBottom: -3 }}
       color={props.focused ? Colors.tintColor : Colors.iconDefault}
     />
   );

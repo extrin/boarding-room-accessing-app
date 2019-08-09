@@ -16,15 +16,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <View style={styles.headerContainer}>
-            <TouchableOpacity onPress={this._openAdvancedSettings}>
-              <CustomIcon name="md-settings" />
-            </TouchableOpacity>
-          </View>
+        <ScrollView style={styles.container}>
           <View style={styles.welcomeContainer}>
             <Text style={styles.welcomeText}>Ваша переговорная комната</Text>
             <Image
@@ -32,7 +24,6 @@ export default class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
-
           <View style={styles.externalLinkContainer}>
             <TouchableOpacity
               style={styles.externalLink}
@@ -42,6 +33,11 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
+        <View style={styles.footerContainer}>
+          <TouchableOpacity onPress={this._openAdvancedSettings}>
+            <CustomIcon name="md-settings" />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -60,13 +56,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primaryLight
   },
-  headerContainer: {
+  footerContainer: {
     alignSelf: "flex-end",
     marginRight: 10
   },
-  contentContainer: {
-    paddingTop: 30
-  },
+
   welcomeContainer: {
     alignItems: "center",
     marginTop: 10,
@@ -93,7 +87,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     paddingVertical: 15,
-    backgroundColor: Colors.primaryDark,
+    backgroundColor: Colors.tintColor,
     borderRadius: 15
   },
   externalLinkText: {
