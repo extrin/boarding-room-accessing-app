@@ -1,16 +1,27 @@
 import React from "react";
-import { createAppContainer, createStackNavigator } from "react-navigation";
+import {
+  createAppContainer,
+  createStackNavigator,
+  createSwitchNavigator
+} from "react-navigation";
 import HomeScreen from "../screens/HomeScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import ManageScreen from "../screens/ManageScreen";
+import AuthScreen from "../screens/AuthScreen";
 import Colors from "../constants/Colors";
+
+const AuthSwitch = createSwitchNavigator({
+  Auth: AuthScreen,
+  Settings: SettingsScreen
+});
 
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Settings: SettingsScreen,
+    Secure: AuthSwitch,
     Manage: ManageScreen
   },
+  { initialRouteName: "Home" },
   {
     defaultNavigationOptions: {
       headerTintColor: Colors.iconDefault,

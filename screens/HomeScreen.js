@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
 
   _openManagingScreen = () => this.props.navigation.navigate("Manage");
 
-  _openAdvancedSettings = () => this.props.navigation.navigate("Settings");
+  _openAdvancedSettings = () => this.props.navigation.navigate("Secure");
 }
 
 HomeScreen.navigationOptions = {
