@@ -15,11 +15,15 @@ const AppNavigator = createStackNavigator(
     defaultNavigationOptions: {
       headerTintColor: Colors.iconDefault,
       headerTitleStyle: {
-        fontWeight: "bold"
+        fontWeight: "bold",
+        marginTop: -37
+      },
+      headerLeftContainerStyle: {
+        marginTop: -37
       },
       headerStyle: {
         backgroundColor: Colors.divider,
-        height: 10
+        height: 15
       }
     }
   }

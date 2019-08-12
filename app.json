@@ -4,10 +4,6 @@
     "slug": "boarding-room-accessing-app",
     "privacy": "public",
     "sdkVersion": "34.0.0",
-    "ios": {
-      "bundleIdentifier": "com.extrin13.boardingroomaccessingapp",
-      "supportsTablet": true
-    },
     "android": {
       "package": "com.extrin13.boardingroomaccessingapp"
     },
@@ -15,7 +11,7 @@
       "backgroundColor": "#CFD8DC",
       "barStyle": "dark-content"
     },
-    "platforms": ["android", "web"],
+    "platforms": ["android"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
