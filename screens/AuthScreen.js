@@ -47,7 +47,7 @@ export default class AuthScreen extends React.Component {
     );
   }
 
-  __navigateToSettings = () => {
+  _navigateToSettings = () => {
     this.props.navigation.navigate("Settings");
   };
 
@@ -55,9 +55,7 @@ export default class AuthScreen extends React.Component {
     this.props.navigation.navigate("Home");
   };
 
-  _validatePassword = password => {
-    password === "Polymedia10" ? true : false;
-  };
+  _validatePassword = password => (password === "Polymedia10" ? true : false);
 }
 
 AuthScreen.navigationOptions = {
@@ -77,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     marginTop: 10,
     padding: 5,
-    fontSize: 25,
+    fontSize: 18,
     color: Colors.primaryText,
     borderRadius: 4,
     borderWidth: 0.5,
@@ -89,18 +87,21 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    fontSize: 17
   },
   acceptButton: {
     backgroundColor: Colors.tintColor,
     alignItems: "center",
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 25,
     borderRadius: 15
   },
   cancelButton: {
     backgroundColor: Colors.divider,
     alignItems: "center",
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 25,
     borderRadius: 15
   }
 });
