@@ -64,10 +64,6 @@ export default class SettingsScreen extends React.Component {
   _navigateToHomeScreen = navigation => this.props.navigation.navigate("Home");
 }
 
-SettingsScreen.navigationOptions = {
-  title: "Расширенные настройки"
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

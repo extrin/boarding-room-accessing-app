@@ -58,10 +58,6 @@ export default class AuthScreen extends React.Component {
   _validatePassword = password => (password === "Polymedia10" ? true : false);
 }
 
-AuthScreen.navigationOptions = {
-  title: "Введите пароль:"
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
