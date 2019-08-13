@@ -39,7 +39,7 @@ export default class SettingsScreen extends React.Component {
             style={styles.acceptButton}
             onPress={() => {
               this._saveServerAddress(this.state.serverAddress).then(
-                this._navigateToHomeScreen(this.props.navigation)
+                this._navigateToHomeScreen()
               );
             }}
           >
@@ -47,7 +47,7 @@ export default class SettingsScreen extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.cancelButton}
-            onPress={() => this._navigateToHomeScreen(this.props.navigation)}
+            onPress={() => this._navigateToHomeScreen()}
           >
             <Text>ОТМЕНИТЬ</Text>
           </TouchableOpacity>
@@ -61,7 +61,7 @@ export default class SettingsScreen extends React.Component {
     alert("Сохранено!");
   };
 
-  _navigateToHomeScreen = navigation => navigation.navigate("Home");
+  _navigateToHomeScreen = navigation => this.props.navigation.navigate("Home");
 }
 
 SettingsScreen.navigationOptions = {
@@ -92,6 +92,8 @@ const styles = StyleSheet.create({
     color: Colors.primaryText
   },
   buttonsContainer: {
+    paddingVertical: 15,
+    paddingHorizontal: 25,
     flexDirection: "row",
     justifyContent: "space-around"
   },
