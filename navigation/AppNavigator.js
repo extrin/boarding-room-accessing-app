@@ -10,31 +10,33 @@ import ManageScreen from "../screens/ManageScreen";
 import AuthScreen from "../screens/AuthScreen";
 import Colors from "../constants/Colors";
 
-const AuthSwitch = createSwitchNavigator({
-  Auth: AuthScreen,
-  Settings: SettingsScreen
-});
+const AuthSwitch = createSwitchNavigator(
+  {
+    Secure: createStackNavigator({ AuthScreen }),
+    Settings: createStackNavigator({ SettingsScreen })
+  },
+  {
+    initialRouteName: "Secure",
+    headerMode: "none"
+  }
+);
 
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Secure: AuthSwitch,
+    Auth: AuthSwitch,
     Manage: ManageScreen
   },
-  { initialRouteName: "Home" },
   {
+    initialRouteName: "Home",
     defaultNavigationOptions: {
-      headerTintColor: Colors.iconDefault,
-      headerTitleStyle: {
-        fontWeight: "bold",
-        marginTop: -37
-      },
-      headerLeftContainerStyle: {
-        marginTop: -37
-      },
       headerStyle: {
         backgroundColor: Colors.divider,
-        height: 15
+        marginTop: -37
+      },
+      headerTintColor: Colors.secondaryText,
+      headerTitleStyle: {
+        fontWeight: "bold"
       }
     }
   }
