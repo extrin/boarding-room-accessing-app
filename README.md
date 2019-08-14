@@ -15,6 +15,6 @@ You need to install [NodeJS](https://nodejs.org/en/download/) to build and run t
 - [x] Create simple UI
 - [x] Open Node-RED Dashboard in a view
 - [x] Make a secure screen for advanced settings like Node-RED server address
-- [] Use NFC to validate room accessing
-- [] Connect to a remote server to get room ID or some other user info
-- [] Support multiple boarding rooms
+- [ ] Use NFC to validate room accessing
+- [ ] Connect to a remote server to get room ID or some other user info
+- [ ] Support multiple boarding rooms
