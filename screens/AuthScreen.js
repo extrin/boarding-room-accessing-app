@@ -8,6 +8,7 @@ import {
   View
 } from "react-native";
 import Colors from "../constants/Colors";
+import HeaderElement from "../components/HeaderElement";
 
 export default class AuthScreen extends React.Component {
   state = { password: "" };
@@ -20,9 +21,10 @@ export default class AuthScreen extends React.Component {
     headerLeft: (
       <HeaderElement
         myOnPress={navigation.navigate}
-        iconName={"ios-arrow-back-outline"}
+        iconName={"md-arrow-back"}
         size={24}
         destination={"Home"}
+        color={Colors.secondaryText}
       />
     )
   });

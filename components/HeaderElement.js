@@ -1,22 +1,28 @@
 import React from "react";
-import { StyleSheet, View, TouchableHighlight } from "react-native";
-import CustomIcon from "../CustomIcon";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
+import CustomIcon from "./CustomIcon";
 
 export default function HeaderElement(props) {
   const {
     myOnPress,
     size,
+    color,
     iconName,
     destination,
     location = "flex-start"
   } = props;
   return (
     <View style={styles.innerContainer}>
-      <TouchableHighlight onPress={() => myOnPress(destination)}>
+      <TouchableOpacity onPress={() => myOnPress(destination)}>
         <View style={[styles.touch, { justifyContent: location }]}>
-          <CustomIcon name={iconName} size={size} style={{ padding: 5 }} />
+          <CustomIcon
+            name={iconName}
+            size={size}
+            style={{ padding: 5, marginLeft: 10 }}
+            color={color}
+          />
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     </View>
   );
 }

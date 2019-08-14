@@ -35,7 +35,11 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
         <View style={styles.footerContainer}>
           <TouchableOpacity onPress={this._openAdvancedSettings}>
-            <CustomIcon name="md-settings" />
+            <CustomIcon
+              name="md-settings"
+              size={26}
+              color={Colors.iconDefault}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -58,7 +62,8 @@ const styles = StyleSheet.create({
   },
   footerContainer: {
     alignSelf: "flex-end",
-    marginRight: 10
+    marginRight: 5,
+    marginBottom: 5
   },
 
   welcomeContainer: {

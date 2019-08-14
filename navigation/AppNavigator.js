@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform, StatusBar } from "react-native";
 import {
   createAppContainer,
   createStackNavigator,
@@ -17,7 +18,7 @@ const AuthSwitch = createSwitchNavigator(
   },
   {
     initialRouteName: "Secure",
-    headerMode: "none"
+    navigationOptions: { header: null }
   }
 );
 
