@@ -12,6 +12,21 @@ import Colors from "../constants/Colors";
 export default class AuthScreen extends React.Component {
   state = { password: "" };
 
+  static navigationOptions = ({ navigation }) => ({
+    headerStyle: { backgroundColor: Colors.divider, marginTop: -37 },
+    headerTitleStyle: { fontWeight: "bold" },
+    headerTintColor: Colors.secondaryText,
+    title: "Введите пароль:",
+    headerLeft: (
+      <HeaderElement
+        myOnPress={navigation.navigate}
+        iconName={"ios-arrow-back-outline"}
+        size={24}
+        destination={"Home"}
+      />
+    )
+  });
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>

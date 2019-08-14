@@ -9,9 +9,25 @@ import {
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import Colors from "../constants/Colors";
+import HeaderElement from "../Components/HeaderElement";
 
 export default class SettingsScreen extends React.Component {
   state = { serverAddress: "" };
+
+  static navigationOptions = ({ navigation }) => ({
+    headerStyle: { backgroundColor: Colors.divider, marginTop: -37 },
+    headerTitleStyle: { fontWeight: "bold" },
+    headerTintColor: Colors.secondaryText,
+    title: "Расширенные настройки",
+    headerLeft: (
+      <HeaderElement
+        myOnPress={navigation.navigate}
+        iconName={"ios-arrow-back-outline"}
+        size={24}
+        destination={"Home"}
+      />
+    )
+  });
 
   componentDidMount() {
     SecureStore.getItemAsync("serverAddress").then(result =>
