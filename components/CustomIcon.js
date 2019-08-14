@@ -6,7 +6,7 @@ export default function CustomIcon(props) {
   return (
     <Ionicons
       name={props.name}
-      size={26}
+      size={props.size}
       color={props.focused ? Colors.tintColor : Colors.iconDefault}
     />
   );
