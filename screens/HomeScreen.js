@@ -27,7 +27,7 @@ export default class HomeScreen extends React.Component {
           </View>
           <View style={styles.externalLinkContainer}>
             <IconButton
-              name="menu"
+              name="nfc"
               text="УПРАВЛЯТЬ"
               textStyle={styles.externalLinkText}
               backgroundColor={Colors.tintColor}
@@ -39,9 +39,6 @@ export default class HomeScreen extends React.Component {
           <TouchableOpacity onPress={this._openAdvancedSettings}>
             <CustomIcon name="settings" size={26} color={Colors.iconDefault} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={this._openNfcScreen}>
-            <CustomIcon name="nfc" size={26} color={Colors.iconDefault} />
-          </TouchableOpacity>
         </View>
       </View>
     );
@@ -50,8 +47,6 @@ export default class HomeScreen extends React.Component {
   _openManagingScreen = () => this.props.navigation.navigate('Manage');
 
   _openAdvancedSettings = () => this.props.navigation.navigate('Secure');
-
-  _openNfcScreen = () => this.props.navigation.navigate('Nfc');
 }
 
 HomeScreen.navigationOptions = {

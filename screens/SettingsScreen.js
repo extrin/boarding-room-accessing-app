@@ -22,7 +22,7 @@ export default class SettingsScreen extends React.Component {
     headerLeft: (
       <HeaderElement
         myOnPress={navigation.navigate}
-        iconName={'md-arrow-back'}
+        iconName={'arrow-left-circle'}
         size={24}
         destination={'Home'}
         color={Colors.secondaryText}
