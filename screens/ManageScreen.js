@@ -1,15 +1,16 @@
-import React from "react";
-import { WebView } from "react-native-webview";
-import { ActivityIndicator, Text } from "react-native";
-import * as SecureStore from "expo-secure-store";
-import Colors from "../constants/Colors";
+import React from 'react';
+import {WebView} from 'react-native-webview';
+import {ActivityIndicator, Text} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import Colors from '../constants/Colors';
 
 export default class ManageScreen extends React.Component {
-  state = { serverAddress: "10.2.0.3" };
+  state = {serverAddress: '10.2.0.3'};
 
   componentDidMount() {
-    SecureStore.getItemAsync("serverAddress").then(res => {
-      res ? this.setState({ serverAddress: res }) : "10.2.0.3";
+    AsyncStorage.getItem('serverAddress').then(res => {
+      res ? this.setState({serverAddress: res}) : '10.2.0.3';
     });
   }
 
@@ -18,13 +19,13 @@ export default class ManageScreen extends React.Component {
       <WebView
         textZoom={100}
         startInLoadingState={true}
-        source={{ uri: `http://${this.state.serverAddress}:1880/ui/#!/0` }}
+        source={{uri: `http://${this.state.serverAddress}:1880/ui/#!/0`}}
         renderError={errorName => <Error errorName={errorName} />}
         renderLoading={() => (
           <ActivityIndicator
             size="large"
             color={Colors.tintColor}
-            style={{ alignSelf: "center" }}
+            style={{alignSelf: 'center'}}
           />
         )}
       />
@@ -33,7 +34,7 @@ export default class ManageScreen extends React.Component {
 }
 
 ManageScreen.navigationOptions = {
-  title: "Управление комнатой"
+  title: 'Управление комнатой',
 };
 
 function Error(props) {

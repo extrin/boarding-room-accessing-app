@@ -1,6 +1,13 @@
-import React from "react";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import {Icon} from 'react-native-elements';
 
 export default function CustomIcon(props) {
-  return <Ionicons name={props.name} size={props.size} color={props.color} />;
+  return (
+    <Icon
+      name={props.name}
+      size={props.size}
+      color={props.color}
+      type="material-community"
+    />
+  );
 }
