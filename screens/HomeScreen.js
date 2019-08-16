@@ -28,10 +28,10 @@ export default class HomeScreen extends React.Component {
           <View style={styles.externalLinkContainer}>
             <IconButton
               name="nfc"
-              text="УПРАВЛЯТЬ"
+              text="ВОЙТИ"
               textStyle={styles.externalLinkText}
               backgroundColor={Colors.tintColor}
-              onPress={this._openManagingScreen}
+              onPress={this._openNfcScreen}
             />
           </View>
         </ScrollView>
@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
     );
   }
 
-  _openManagingScreen = () => this.props.navigation.navigate('Manage');
+  _openManagingScreen = () => this.props.navigation.navigate('Nfc');
 
   _openAdvancedSettings = () => this.props.navigation.navigate('Secure');
 }
