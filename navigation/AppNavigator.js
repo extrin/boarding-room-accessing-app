@@ -9,6 +9,7 @@ import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ManageScreen from '../screens/ManageScreen';
 import AuthScreen from '../screens/AuthScreen';
+import NfcScreen from '../screens/NfcScreen';
 import Colors from '../constants/Colors';
 
 const AuthSwitch = createSwitchNavigator(
@@ -25,6 +26,7 @@ const AuthSwitch = createSwitchNavigator(
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
+    Nfc: NfcScreen,
     Auth: AuthSwitch,
     Manage: ManageScreen,
   },

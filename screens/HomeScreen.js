@@ -34,6 +34,10 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
         <View style={styles.footerContainer}>
           <TouchableOpacity onPress={this._openAdvancedSettings}>
+            <CustomIcon name="settings" size={26} color={Colors.iconDefault} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this._openNfcScreen}>
+            <CustomIcon name="nfc" size={26} color={Colors.iconDefault} />
           </TouchableOpacity>
         </View>
       </View>
@@ -44,6 +48,7 @@ export default class HomeScreen extends React.Component {
 
   _openAdvancedSettings = () => this.props.navigation.navigate('Secure');
 
+  _openNfcScreen = () => this.props.navigation.navigate('Nfc');
 }
 
 HomeScreen.navigationOptions = {
