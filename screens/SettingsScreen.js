@@ -9,25 +9,14 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Colors from '../constants/Colors';
-import HeaderElement from '../components/HeaderElement';
+import {DefaultHeaderLeft} from '../components/HeaderElement';
 
 export default class SettingsScreen extends React.Component {
   state = {serverAddress: ''};
 
   static navigationOptions = ({navigation}) => ({
-    headerStyle: {backgroundColor: Colors.divider, marginTop: -37},
-    headerTitleStyle: {fontWeight: 'bold'},
-    headerTintColor: Colors.secondaryText,
     title: 'Расширенные настройки',
-    headerLeft: (
-      <HeaderElement
-        myOnPress={navigation.navigate}
-        iconName={'arrow-left-circle'}
-        size={24}
-        destination={'Home'}
-        color={Colors.secondaryText}
-      />
-    ),
+    headerLeft: <DefaultHeaderLeft onPress={navigation.navigate} />,
   });
 
   componentDidMount() {

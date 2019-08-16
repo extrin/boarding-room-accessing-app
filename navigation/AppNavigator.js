@@ -1,21 +1,28 @@
 import React from 'react';
-// import { Platform, StatusBar } from "react-native";
 import {
   createAppContainer,
   createStackNavigator,
   createSwitchNavigator,
 } from 'react-navigation';
+import {Platform, StatusBar} from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ManageScreen from '../screens/ManageScreen';
 import AuthScreen from '../screens/AuthScreen';
-import NfcScreen from '../screens/NfcScreen';
 import Colors from '../constants/Colors';
+import {headerHeight} from '../constants/Dimensions';
+import {defaultNavigatorConfig} from '../constants/NavigatorConfig';
 
 const AuthSwitch = createSwitchNavigator(
   {
-    Secure: createStackNavigator({AuthScreen}),
-    Settings: createStackNavigator({SettingsScreen}),
+    Secure: createStackNavigator(
+      {AuthScreen},
+      {defaultNavigationOptions: defaultNavigatorConfig},
+    ),
+    Settings: createStackNavigator(
+      {SettingsScreen},
+      {defaultNavigationOptions: defaultNavigatorConfig},
+    ),
   },
   {
     initialRouteName: 'Secure',
@@ -26,22 +33,12 @@ const AuthSwitch = createSwitchNavigator(
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Nfc: NfcScreen,
     Auth: AuthSwitch,
     Manage: ManageScreen,
   },
   {
     initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Colors.divider,
-        marginTop: -37,
-      },
-      headerTintColor: Colors.secondaryText,
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    },
+    defaultNavigationOptions: defaultNavigatorConfig,
   },
 );
 

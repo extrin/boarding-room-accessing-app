@@ -6,27 +6,18 @@ import {
   TouchableOpacity,
   StyleSheet,
   View,
+  Platform,
+  StatusBar,
 } from 'react-native';
 import Colors from '../constants/Colors';
-import HeaderElement from '../components/HeaderElement';
+import {DefaultHeaderLeft} from '../components/HeaderElement';
 
 export default class AuthScreen extends React.Component {
   state = {password: ''};
 
   static navigationOptions = ({navigation}) => ({
-    headerStyle: {backgroundColor: Colors.divider, marginTop: -37},
-    headerTitleStyle: {fontWeight: 'bold'},
-    headerTintColor: Colors.secondaryText,
-    title: 'Введите пароль:',
-    headerLeft: (
-      <HeaderElement
-        myOnPress={navigation.navigate}
-        iconName={'arrow-left-circle'}
-        size={24}
-        destination={'Home'}
-        color={Colors.secondaryText}
-      />
-    ),
+    title: 'Введите пароль',
+    headerLeft: <DefaultHeaderLeft onPress={navigation.navigate} />,
   });
 
   render() {

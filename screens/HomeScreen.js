@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.primaryLight,
+    paddingTop: 10,
   },
   footerContainer: {
     alignSelf: 'flex-end',
