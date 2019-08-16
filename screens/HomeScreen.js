@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Colors from '../constants/Colors';
 import CustomIcon from '../components/CustomIcon';
+import IconButton from '../components/IconButton';
 
 export default class HomeScreen extends React.Component {
   render() {
@@ -25,11 +26,13 @@ export default class HomeScreen extends React.Component {
             />
           </View>
           <View style={styles.externalLinkContainer}>
-            <TouchableOpacity
-              style={styles.externalLink}
-              onPress={this._openManagingScreen}>
-              <Text style={styles.externalLinkText}>УПРАВЛЯТЬ</Text>
-            </TouchableOpacity>
+            <IconButton
+              name="menu"
+              text="УПРАВЛЯТЬ"
+              textStyle={styles.externalLinkText}
+              backgroundColor={Colors.tintColor}
+              onPress={this._openManagingScreen}
+            />
           </View>
         </ScrollView>
         <View style={styles.footerContainer}>
@@ -87,13 +90,6 @@ const styles = StyleSheet.create({
   },
   externalLinkContainer: {
     alignItems: 'center',
-  },
-  externalLink: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    paddingVertical: 15,
-    backgroundColor: Colors.tintColor,
-    borderRadius: 15,
   },
   externalLinkText: {
     fontSize: 25,
