@@ -8,6 +8,7 @@ import {
   View,
   Platform,
   StatusBar,
+  Alert,
 } from 'react-native';
 import Colors from '../constants/Colors';
 import {DefaultHeaderLeft} from '../components/HeaderElement';
@@ -39,7 +40,7 @@ export default class AuthScreen extends React.Component {
             onPress={() => {
               this._validatePassword(this.state.password)
                 ? this._navigateToSettings()
-                : alert('Неверный пароль!');
+                : Alert.alert('Уведомление', 'Неверный пароль!');
             }}>
             <Text>ВПЕРЕД</Text>
           </TouchableOpacity>

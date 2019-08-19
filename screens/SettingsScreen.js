@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   View,
+  Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Colors from '../constants/Colors';
@@ -74,7 +75,7 @@ export default class SettingsScreen extends React.Component {
   _saveSettings = async () => {
     await AsyncStorage.setItem('serverAddress', this.state.serverAddress);
     await AsyncStorage.setItem('roomTag', this.state.roomTag);
-    alert('Сохранено!');
+    Alert.alert('Уведомление', 'Сохранено!');
   };
 
   _navigateToHomeScreen = navigation => this.props.navigation.navigate('Home');
