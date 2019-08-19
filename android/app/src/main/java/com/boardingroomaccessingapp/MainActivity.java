@@ -1,5 +1,6 @@
 package com.boardingroomaccessingapp;
 
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
@@ -22,7 +23,14 @@ public class MainActivity extends ReactActivity {
         @Override
         protected ReactRootView createRootView() {
           return new RNGestureHandlerEnabledRootView(MainActivity.this);
-      }
-    };
-  }
+        }
+      };
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+      setTheme(R.style.AppTheme);
+      super.onCreate(savedInstanceState);
+//      getWindow().setBackgroundDrawable(null);
+    }
 }
