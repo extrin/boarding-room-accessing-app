@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 export const DefaultHeaderLeft = props => (
   <HeaderElement
     myOnPress={props.onPress}
-    iconName={'home'}
+    iconName={'arrow-left-circle'}
     size={24}
     destination={'Home'}
     color={Colors.secondaryText}

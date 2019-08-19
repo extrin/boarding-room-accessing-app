@@ -1,8 +1,17 @@
 import React from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Text,
+  Platform,
+  ActivityIndicator,
+} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import NfcManager, {Ndef} from 'react-native-nfc-manager';
 import CustomIcon from '../components/CustomIcon';
 import IconButton from '../components/IconButton';
+import {DefaultHeaderLeft} from '../components/HeaderElement';
 import Colors from '../constants/Colors';
 
 export default class SearchNfcScreen extends React.Component {
@@ -10,9 +19,21 @@ export default class SearchNfcScreen extends React.Component {
     supported: true,
     enabled: false,
     tag: {},
+    text: '',
+    roomTag: '',
   };
 
+  static navigationOptions = ({navigation}) => ({
+    title: 'Подождите...',
+    headerLeft: <DefaultHeaderLeft onPress={navigation.navigate} />,
+  });
+
   componentDidMount() {
+    AsyncStorage.getItem('roomTag').then(roomTag =>
+      roomTag
+        ? this.setState({roomTag})
+        : this.setState({roomTag: '04525302D34980'}),
+    );
     NfcManager.isSupported().then(supported => {
       this.setState({supported});
       if (supported) {
@@ -25,12 +46,14 @@ export default class SearchNfcScreen extends React.Component {
     if (this._stateChangedSubscription) {
       this._stateChangedSubscription.remove();
     }
+    this._stopDetection();
   }
 
   render() {
-    let {supported, enabled, tag} = this.state;
+    const {supported, enabled, tag, text} = this.state;
+    if (this.state.enabled) this._startDetection();
     return (
-      <ScrollView>
+      <ScrollView style={styles.container}>
         {!supported ? (
           <View style={styles.nfcAbsentContainer}>
             <Text>
@@ -60,7 +83,10 @@ export default class SearchNfcScreen extends React.Component {
           </View>
         ) : (
           <View style={styles.nfcEnabledContainer}>
-            <Text>{tag}</Text>
+            <Text>
+              Приложите телефон к считывателю у двери переговорной комнаты...
+            </Text>
+            <ActivityIndicator size="large" color={Colors.tintColor} />
           </View>
         )}
       </ScrollView>
@@ -77,7 +103,7 @@ export default class SearchNfcScreen extends React.Component {
         console.log('start OK', result);
       })
       .catch(error => {
-        console.warn('start fail', error);
+        console.error('start fail', error);
         this.setState({supported: false});
       });
 
@@ -90,14 +116,14 @@ export default class SearchNfcScreen extends React.Component {
           }
         })
         .catch(err => {
-          console.log(err);
+          console.error(err);
         });
       NfcManager.isEnabled()
         .then(enabled => {
           this.setState({enabled});
         })
         .catch(err => {
-          console.log(err);
+          console.error(err);
         });
       NfcManager.onStateChanged(event => {
         if (event.state === 'on') {
@@ -116,7 +142,7 @@ export default class SearchNfcScreen extends React.Component {
           // when you don't want to listen to this anymore
         })
         .catch(err => {
-          console.warn(err);
+          console.error(err);
         });
     }
   }
@@ -128,21 +154,63 @@ export default class SearchNfcScreen extends React.Component {
           console.log('goToNfcSetting OK', result);
         })
         .catch(error => {
-          console.warn('goToNfcSetting fail', error);
+          console.error('goToNfcSetting fail', error);
         });
     }
   }
+
+  _onTagDiscovered = tag => {
+    console.log('Tag Discovered', tag);
+
+    this.setState({tag});
+
+    let text = tag.id;
+    this.setState({text});
+
+    if (this.state.text === this.state.roomTag)
+      this.props.navigation.navigate('Manage');
+  };
+
+  _startDetection = () => {
+    NfcManager.registerTagEvent(this._onTagDiscovered)
+      .then(result => {
+        console.log('registerTagEvent OK', result);
+      })
+      .catch(error => {
+        console.error('registerTagEvent fail', error);
+      });
+  };
+
+  _stopDetection() {
+    NfcManager.unregisterTagEvent()
+      .then(result => {
+        console.log('unregisterTagEvent OK', result);
+      })
+      .catch(error => {
+        console.error('unregisterTagEvent fail', error);
+      });
+  }
+
+  _parseText = tag => {
+    try {
+      if (Ndef.isType(tag.ndefMessage[0], Ndef.TNF_WELL_KNOWN, Ndef.RTD_TEXT)) {
+        return Ndef.text.decodePayload(tag.ndefMessage[0].payload);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    return null;
+  };
 }
 
-SearchNfcScreen.navigationOptions = {
-  title: 'Подождите...',
-};
-
 const styles = StyleSheet.create({
+  container: {},
   nfcAbsentContainer: {},
   nfcDisabledContainer: {},
-  nfcEnabledContainer: {},
+  nfcEnabledContainer: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+  },
   upperGroup: {},
   buttonContainer: {},
-  nfcText: {},
 });

@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
     );
   }
 
-  _openManagingScreen = () => this.props.navigation.navigate('Nfc');
+  _openNfcScreen = () => this.props.navigation.navigate('Nfc');
 
   _openAdvancedSettings = () => this.props.navigation.navigate('Secure');
 }
