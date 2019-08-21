@@ -6,6 +6,7 @@ import {
   Text,
   Platform,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import NfcManager, {Ndef} from 'react-native-nfc-manager';
@@ -32,7 +33,7 @@ export default class SearchNfcScreen extends React.Component {
     AsyncStorage.getItem('roomTag').then(roomTag =>
       roomTag
         ? this.setState({roomTag})
-        : this.setState({roomTag: '04525302D34980'}),
+        : this.setState({roomTag: '0487828AEE3280'}),
     );
     NfcManager.isSupported().then(supported => {
       this.setState({supported});
@@ -161,7 +162,6 @@ export default class SearchNfcScreen extends React.Component {
 
   _onTagDiscovered = tag => {
     console.log('Tag Discovered', tag);
-
     this.setState({tag});
 
     let text = tag.id;
@@ -169,6 +169,13 @@ export default class SearchNfcScreen extends React.Component {
 
     if (this.state.text === this.state.roomTag)
       this.props.navigation.navigate('Manage');
+    else
+      Alert.alert(
+        'Внимание!',
+        'Вы пытаетесь войти в чужую комнату!',
+        [{text: 'OK', onPress: () => this.props.navigation.navigate('Home')}],
+        {cancelable: false},
+      );
   };
 
   _startDetection = () => {
@@ -190,17 +197,6 @@ export default class SearchNfcScreen extends React.Component {
         console.error('unregisterTagEvent fail', error);
       });
   }
-
-  _parseText = tag => {
-    try {
-      if (Ndef.isType(tag.ndefMessage[0], Ndef.TNF_WELL_KNOWN, Ndef.RTD_TEXT)) {
-        return Ndef.text.decodePayload(tag.ndefMessage[0].payload);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-    return null;
-  };
 }
 
 const styles = StyleSheet.create({

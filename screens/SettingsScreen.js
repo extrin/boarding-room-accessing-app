@@ -29,7 +29,7 @@ export default class SettingsScreen extends React.Component {
     AsyncStorage.getItem('roomTag').then(roomTag =>
       roomTag
         ? this.setState({roomTag})
-        : this.setState({roomTag: '04525302D34980'}),
+        : this.setState({roomTag: '0487828AEE3280'}),
     );
   }
 
