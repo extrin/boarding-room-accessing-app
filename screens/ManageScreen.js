@@ -15,8 +15,10 @@ export default class ManageScreen extends React.Component {
   });
 
   componentDidMount() {
-    AsyncStorage.getItem('serverAddress').then(res => {
-      res ? this.setState({serverAddress: res}) : '10.2.0.3';
+    AsyncStorage.getItem('serverAddress').then(serverAddress => {
+      serverAddress
+        ? this.setState({serverAddress})
+        : this.setState({serverAddress: '10.2.0.3'});
     });
   }
 

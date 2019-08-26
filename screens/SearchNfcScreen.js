@@ -22,6 +22,7 @@ export default class SearchNfcScreen extends React.Component {
     tag: {},
     text: '',
     roomTag: '',
+    serverAddress: '',
   };
 
   static navigationOptions = ({navigation}) => ({
@@ -34,6 +35,11 @@ export default class SearchNfcScreen extends React.Component {
       roomTag
         ? this.setState({roomTag})
         : this.setState({roomTag: '0487828AEE3280'}),
+    );
+    AsyncStorage.getItem('serverAddress').then(serverAddress =>
+      serverAddress
+        ? this.setState({serverAddress})
+        : this.setState({serverAddress: '10.2.0.3'}),
     );
     NfcManager.isSupported().then(supported => {
       this.setState({supported});
@@ -167,9 +173,22 @@ export default class SearchNfcScreen extends React.Component {
     let text = tag.id;
     this.setState({text});
 
-    if (this.state.text === this.state.roomTag)
-      this.props.navigation.navigate('Manage');
-    else
+    if (this.state.text === this.state.roomTag) {
+      const url = 'http://' + this.state.serverAddress + ':1880/open';
+      fetch(url).then(
+        Alert.alert(
+          'Добро пожаловать!',
+          'Входите!',
+          [
+            {
+              text: 'OK',
+              onPress: () => this.props.navigation.navigate('Manage'),
+            },
+          ],
+          {cancelable: false},
+        ),
+      );
+    } else
       Alert.alert(
         'Внимание!',
         'Вы пытаетесь войти в чужую комнату!',
